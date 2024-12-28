@@ -1,18 +1,14 @@
-let textbox=document.getElementById("textbox");
+const textbox = document.getElementById("textbox");
+const charCount = document.getElementById("char");
+const wordCount = document.getElementById("word");
 
-function fun1(){
-    let text =this.value;
-    let char = text.length;
-    document.getElementById("char").innerHTML=char;
+function updateCounts() {
+  const text = textbox.value;
+  charCount.textContent = text.length;
 
-    text=text.trim();
-    let w = text.split(" ");
-    let start=w.filter(function(elm){
-        return elm!="";
-    });
-    document.getElementById("word").innerHTML=start.length;
+  // Count words
+  const words = text.trim().split(/\s+/).filter(word => word !== "");
+  wordCount.textContent = words.length;
 }
-textbox.addEventListener("input",fun1);
 
-
-
+textbox.addEventListener("input", updateCounts);
